@@ -16,7 +16,6 @@ Run with dockerfile (in terminal in VS Code or Github Codespaces or more):
 ```
 docker build -f Dockerfile -t app:latest .
 ```
-
 ```
 docker run -p 8501:8501 app:latest
 ```
