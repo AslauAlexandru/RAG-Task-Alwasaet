@@ -15,6 +15,9 @@ Run with dockerfile (in terminal in VS Code or Github Codespaces or more):
 
 ```
 docker build -f Dockerfile -t app:latest .
+```
+
+```
 docker run -p 8501:8501 app:latest
 ```
 
@@ -31,7 +34,9 @@ Run with streamlit (in terminal in VS Code or Github Codespaces or more):
 
 ```
 streamlit run app_llamaparse.py --server.port 8501
+```
 
+```
 streamlit run app_pdfplumber.py --server.port 8501
 ```
 
