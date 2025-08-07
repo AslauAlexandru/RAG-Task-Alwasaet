@@ -106,7 +106,7 @@ GOOGLE_API_KEY="your_api_key"
 LLAMA_CLOUD_API_KEY="your_api_key"
 ```
 
-- To access the environment variables you need to have this code in google colab/jupyter notebooks/scripts:
+- To access the environment variables you need to have this code in Google Colab/jupyter notebooks/scripts:
 ```
 import os
 from dotenv import load_dotenv
@@ -116,6 +116,23 @@ load_dotenv()
 google_api_key = os.getenv("GOOGLE_API_KEY")
 llama_cloud_api_key = os.getenv("LLAMA_CLOUD_API_KEY")
 
+```
+
+- In Google Colab (please check the above link), we use pyngrok (```ngrok_token = userdata.get('NGROK_AUTH_TOKEN') ```) for running the streamlit web apps and we use the previous environment variables, we can use like this:
+```
+from threading import Thread
+from pyngrok import ngrok
+from google.colab import userdata
+
+import os
+from google.colab import userdata
+
+os.environ['GOOGLE_API_KEY'] = userdata.get("GOOGLE_API_KEY")
+os.environ['LLAMA_CLOUD_API_KEY'] = userdata.get("LLAMA_CLOUD_API_KEY")
+
+ngrok_token = userdata.get('NGROK_AUTH_TOKEN')
+
+ngrok.set_auth_token(ngrok_token)
 ```
 
 ## References
