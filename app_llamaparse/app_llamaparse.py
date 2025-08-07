@@ -14,6 +14,9 @@ from llama_index.llms.gemini import Gemini
 from llama_index.embeddings.gemini import GeminiEmbedding as GoogleGenerativeAIEmbedding
 #from llama_index.readers.file import LlamaParseReader # For LlamaParse
 from llama_cloud_services import LlamaParse, EU_BASE_URL  # For LlamaParse
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # --- Configuration ---
 # Streamlit page configuration
@@ -69,7 +72,7 @@ def get_chat_engine(index):
         "Your answers must be grounded in the information from the document. "
         "When you provide an answer, you MUST also cite the source page number(s).\n"
         "If the answer to a question is not available in the provided context, you MUST respond with: "
-        "'I could not find an answer to this question in the document.'\n"
+        "'No answer found and I could not find an answer to this question in the document.'\n"
         "Do not use any prior knowledge or make up information."
     )
 
@@ -86,7 +89,7 @@ def get_chat_engine(index):
 
 
 # --- Streamlit UI ---
-st.title("📄 Document Chat Assistant")
+st.title("RAG - 📄 Document Chat Assistant (LlamaParse)")
 st.caption("Upload a document, ask questions, and get cited answers.")
 
 # Initialize session state for messages and the chat engine

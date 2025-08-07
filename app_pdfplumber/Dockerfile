@@ -6,9 +6,11 @@ WORKDIR /app_pdfplumber
 
 # Copy the requirements file into the container at /app
 COPY requirements.txt .
+# COPY requirements_pip_freeze.txt .
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+# RUN pip install --no-cache-dir -r requirements_pip_freeze.txt
 
 # Copy the rest of the application's code into the container at /app
 COPY app_pdfplumber.py .
@@ -25,8 +27,15 @@ CMD ["streamlit", "run", "app_pdfplumber.py", "--server.port=8501", "--server.ad
 # https://maelfabien.github.io/project/Streamlit/#
 
 # docker build -f Dockerfile -t app:latest .
-# docker run -p 8501:8501 app:latest
-#docker run -p 8501:8501 -it doc-chat-app
+# docker run -p 8501:8501 app:latest # works
+
+#docker run -p 8501:8501 -it doc-chat-app # no works
 #Open your browser and go to http://localhost:8501.
 
+#Stop for rerun the container:
+#docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+#stop-all-docker.md: https://gist.github.com/atomkirk/8e688dba9fb44ba372823c2820f5136e
 
+#Kill the process using the port (no works for me):
+#sudo lsof -i :8501
+#sudo kill <PID> #exemple <PID> - 14405, 14411

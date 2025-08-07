@@ -19,6 +19,10 @@ from llama_index.embeddings.gemini import GeminiEmbedding as GoogleGenerativeAIE
 import pdfplumber
 from typing import List
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # --- Configuration ---
 st.set_page_config(
     page_title="Local Document Assistant",
@@ -92,7 +96,7 @@ def get_chat_engine(index):
         "Your answers must be grounded in the information from the document. "
         "When you provide an answer, you MUST also cite the source page number(s).\n"
         "If the answer to a question is not available in the provided context, you MUST respond with: "
-        "'I could not find an answer to this question in the document.'\n"
+       "'No answer found and I could not find an answer to this question in the document.'\n"
         "Do not use any prior knowledge or make up information."
     )
     memory = ChatMemoryBuffer.from_defaults(token_limit=3000)
@@ -107,7 +111,7 @@ def get_chat_engine(index):
 
 
 # --- Streamlit UI ---
-st.title("📄 Document Chat Assistant (Local Parser)")
+st.title("RAG - 📄 Document Chat Assistant (Local Parser - pdfplumber)")
 st.caption("Powered by `pdfplumber` for free, local document processing.")
 
 # Initialize session state

@@ -24,11 +24,21 @@ CMD ["streamlit", "run", "app_llamaparse.py", "--server.port=8501", "--server.ad
 # CMD ["streamlit", "run", "app_llamaparse.py", "--server.port=8501", "--server.address=0.0.0.0"]
 
 #Bash
+# Deploy a Streamlit WebApp with Docker:
+# https://maelfabien.github.io/project/Streamlit/#
 
-#docker run -p 8501:8501 -it doc-chat-app
+# docker build -f Dockerfile -t app:latest .
+# docker run -p 8501:8501 app:latest # works
+
+#docker run -p 8501:8501 -it doc-chat-app # no works
 #Open your browser and go to http://localhost:8501.
 
+#Stop for rerun the container:
+#docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+#stop-all-docker.md: https://gist.github.com/atomkirk/8e688dba9fb44ba372823c2820f5136e
 
-
+#Kill the process using the port (no works for me):
+#sudo lsof -i :8501
+#sudo kill <PID> #exemple <PID> - 14405, 14411
 
 
