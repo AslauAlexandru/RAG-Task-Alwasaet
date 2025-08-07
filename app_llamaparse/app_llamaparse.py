@@ -84,6 +84,7 @@ def get_chat_engine(index):
         memory=memory,
         system_prompt=system_prompt,
         verbose=True,
+        streaming=True,
     )
     return chat_engine
 
@@ -98,7 +99,7 @@ if "messages" not in st.session_state:
 if "chat_engine" not in st.session_state:
     st.session_state.chat_engine = None
 
-# --- Sidebar for API Keys and Upload ---
+# --- Sidebar for API Keys and Upload ---  
 with st.sidebar:
     st.header("Configuration")
     #google_api_key = st.text_input("Enter your Google API Key", type="password", key="google_api_key")
@@ -164,7 +165,10 @@ if prompt := st.chat_input("Ask a question about the document..."):
             if response.source_nodes:
                 for node in response.source_nodes:
                     page_number = node.metadata.get('page_label', 'N/A')
+                    #page_number = node.metadata.get('page_label')
+                    file_name = node.metadata.get('file_name')
                     citations.append(f"Page {page_number}")
+                    citations.append(f"File name {file_name}")
 
             # Remove duplicates and format
             unique_citations = sorted(list(set(citations)))

@@ -106,6 +106,7 @@ def get_chat_engine(index):
         memory=memory,
         system_prompt=system_prompt,
         verbose=True,
+        streming=True,  
     )
     return chat_engine
 
@@ -178,7 +179,10 @@ if prompt := st.chat_input("Ask a question about the document..."):
             if response.source_nodes:
                 for node in response.source_nodes:
                     page_number = node.metadata.get('page_label', 'N/A')
+                    #page_number = node.metadata.get('page_label')
+                    file_name = node.metadata.get('file_name')
                     citations.append(f"Page {page_number}")
+                    citations.append(f"File name {file_name}")
 
             unique_citations = sorted(list(set(citations)))
             citation_text = f"\n\n*Sources: {', '.join(unique_citations)}*" if unique_citations else ""
