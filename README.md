@@ -29,6 +29,7 @@ docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 ```
 
 **Streamlit**
+
 Run with streamlit (in terminal in VS Code or Github Codespaces or more):
 
 ```
@@ -73,26 +74,48 @@ The document processing workflow includes:
 **c. RAG Implementation**
 The RAG system utilizes several key components:
 
--Implmented in LlamaIndex and streamlit for interface
+- Implmented in LlamaIndex and streamlit for interface
 
--Vector Store: ChromaDB for efficient similarity search
+- Vector Store: ChromaDB for efficient similarity search
 
--Embeddings: GeminiEmbedding using models/embedding-001 for text vectorization
+- Embeddings: GeminiEmbedding using models/embedding-001 for text vectorization
 
--ChatMemoryBuffer (using LlamaIndex): ChatMemoryBuffer is used for memory buffer to retain conversation history
+- ChatMemoryBuffer (using LlamaIndex): ChatMemoryBuffer is used for memory buffer to retain conversation history
 
--Response Generation (using LlamaIndex): Initializes a chat engine with chat_mode="condense_plus_context" or chat_mode="context", ChatMemoryBuffer, custom system prompt (here I set the LLM to cite pages, files name and more)
+- Response Generation (using LlamaIndex): Initializes a chat engine with chat_mode="condense_plus_context" or chat_mode="context", ChatMemoryBuffer, custom system prompt (here I set the LLM to cite pages, files name and more)
 
+- Cite pages and file names (in code, not in custom system prompt):
+```
+...
+page_number = node.metadata.get('page_label', 'N/A')
+#page_number = node.metadata.get('page_label')
+file_name = node.metadata.get('file_name')
+...
+```                    
 
 ## Environment variables and configuration details
 
 Environment variables are ```GOOGLE_API_KEY="your_api_key"``` and ```LLAMA_CLOUD_API_KEY="your_api_key"```.
 
-Configuration details, we create an .env file (in repo exists an .env.example) and look like this:
+Configuration details:
+
+- We create an .env file (in repo exists an .env.example as example) and look like this:
 ```
 GOOGLE_API_KEY="your_api_key"
 
 LLAMA_CLOUD_API_KEY="your_api_key"
+```
+
+- To access the environment variables you need to have this code in google colab/jupyter notebooks/scripts:
+```
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+google_api_key = os.getenv("GOOGLE_API_KEY")
+llama_cloud_api_key = os.getenv("LLAMA_CLOUD_API_KEY")
+
 ```
 
 ## References
