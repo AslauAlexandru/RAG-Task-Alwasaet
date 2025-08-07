@@ -22,7 +22,7 @@ docker run -p 8501:8501 app:latest
 
 Dockerfile install the ``` requirements.txt ``` or ```requirements_pip_freeze.txt```.
 
-If you want to rerun the previous dockerfile in terminal, you need to stop for rerun the container if you don't do this you will have problems with port, just run this in terminal:
+If you want to rerun the previous dockerfile in terminal, you need to stop for rerun the container if you don't do this you will have problems with port, just run this in terminal (please check [stop-all-docker.md]( https://gist.github.com/atomkirk/8e688dba9fb44ba372823c2820f5136e)):
 
 ```
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
@@ -47,28 +47,28 @@ streamlit run app_pdfplumber.py --server.port 8501
 
 The application’s frontend is built using Streamlit, which offers:
 
--Clean, responsive interface
+- Clean, responsive interface
 
--PDF upload functionality
+- PDF upload functionality
 
--Interactive chat or chatbot interface
+- Interactive chat or chatbot interface
 
 
 **b. Document Processing Pipeline**
 
 The document processing workflow includes:
 
--PDF text extraction using LlamaParse for ``` app_llamaparse.py ``` and/or pdfplumber for ```app_pdfplumber.py```
+- PDF text extraction using LlamaParse for ``` app_llamaparse.py ``` and/or pdfplumber for ```app_pdfplumber.py```
 
--Text chunking with SentenceSplitter
+- Text chunking with SentenceSplitter
 
--Chunk size: 1024 characters
+- Chunk size: 1024 characters
 
--Chunk overlap: 100 characters
+- Chunk overlap: 100 characters
 
--Vector embeddings generation using models/embedding-001 from google gemini, it is a gemini embedding
+- Vector embeddings generation using models/embedding-001 from google gemini, it is a gemini embedding
 
--Storage in Chroma vector database
+- Storage in Chroma vector database
 
 
 **c. RAG Implementation**
