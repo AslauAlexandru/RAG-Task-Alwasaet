@@ -80,7 +80,7 @@ def get_chat_engine(index):
     memory = ChatMemoryBuffer.from_defaults(token_limit=3000)
 
     chat_engine = index.as_chat_engine(
-        chat_mode="context",
+        chat_mode="condense_plus_context", #chat_mode="context",
         memory=memory,
         system_prompt=system_prompt,
         verbose=True,
