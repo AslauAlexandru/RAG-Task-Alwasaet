@@ -22,7 +22,7 @@ docker run -p 8501:8501 app:latest
 
 Dockerfile install the ``` requirements.txt ``` or ```requirements_pip_freeze.txt```.
 
-If you want to rerun the previous dockerfile in terminal, you need to stop for rerun the container if you don't do this you will have problems with port, just run this in terminal (please check [stop-all-docker.md]( https://gist.github.com/atomkirk/8e688dba9fb44ba372823c2820f5136e)):
+If you want to rerun the previous dockerfile in terminal (you will have errors if you don't follow the instructions), you need to stop for rerun the container if you don't do this you will have problems with port, just run this in terminal (please check [stop-all-docker.md]( https://gist.github.com/atomkirk/8e688dba9fb44ba372823c2820f5136e)):
 
 ```
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
