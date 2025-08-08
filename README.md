@@ -80,7 +80,7 @@ The RAG system utilizes several key components:
 
 - Embeddings: GeminiEmbedding using models/embedding-001 for text vectorization
 
-- ChatMemoryBuffer (using LlamaIndex): ChatMemoryBuffer is used for memory buffer to retain conversation history
+- ChatMemoryBuffer (using LlamaIndex): ChatMemoryBuffer is used for memory buffer to retain conversation history (Conversation Memory: support memory so the system can understand follow-up questions in context)
 
 - Response Generation (using LlamaIndex): Initializes a chat engine with chat_mode="condense_plus_context" or chat_mode="context", ChatMemoryBuffer, custom system prompt (here I set the LLM to cite pages, files name and more)
 
