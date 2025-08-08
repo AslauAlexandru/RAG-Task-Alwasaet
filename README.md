@@ -135,6 +135,10 @@ ngrok_token = userdata.get('NGROK_AUTH_TOKEN')
 ngrok.set_auth_token(ngrok_token)
 ```
 
+## Video link
+
+Video link: https://youtu.be/NICkObUIP38
+
 ## References
 
 How I Built a Local RAG App for PDF Q&A | Streamlit | LLAMA 3.x | 2025: https://medium.com/@seotanvirbd/how-i-built-a-local-rag-app-for-pdf-q-a-streamlit-llama-3-x-2025-383db1ed1399
